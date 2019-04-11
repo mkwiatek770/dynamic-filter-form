@@ -35,6 +35,7 @@ class Command(BaseCommand):
             author_name = faker.first_name()
             published_date = faker.date_between()
             reviewed = faker.boolean()
+            views = randint(0, 100)
 
             author = Author.objects.get_or_create(
                 name=author_name
@@ -44,7 +45,8 @@ class Command(BaseCommand):
                 title=title,
                 author=author,
                 published_date=published_date,
-                reviewed=reviewed
+                reviewed=reviewed,
+                views=views
             )
             add_categories(article)
 
