@@ -23,7 +23,8 @@ class ArticleListView(ListView):
         view_count_max = request.GET.get("view_count_max")
         date_min = request.GET.get("date_min")
         date_max = request.GET.get("date_max")
-        category = request.GET.get("category")
+        #category = request.GET.get("category")
+        reviewed = request.GET.get("reviewed")
 
         qs = Article.objects.all()
 
@@ -41,4 +42,11 @@ class ArticleListView(ListView):
         if condition_valid(view_count_max):
             qs = qs.filter(views__lte=int(view_count_max))
 
+        if condition_valid(date_min):
+            qs = qs.filter(published_date__gte=date_min)
+        if condition_valid(date_min):
+            qs = qs.filter(published_date__lte=date_max)
+
+        if reviewed:
+            qs = qs.filter(reviewed=True)
         return qs
