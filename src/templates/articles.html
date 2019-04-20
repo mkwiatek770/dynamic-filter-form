@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+        <div class="row">
+        <ul>
+          {% for journal in articles %}
+            <li>
+              {{ journal.title }}
+              <span>Author: {{ journal.author.name }}</span>
+              <span>
+                {% for cat in journal.categories.all %}
+                  {{ cat }}
+                {% endfor %}
+              </span>
+              <span>Publish date: {{ journal.publish_date }}</span>
+              <span>View count: {{ journal.views }}</span>
+              <span>Reviewed: {{ journal.reviewed }}</span>
+            </li>
+            <hr />
+          {% endfor %}
+        </ul>
+      </div>
+
+{% endblock %}

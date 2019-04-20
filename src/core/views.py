@@ -35,4 +35,10 @@ class ArticleListView(ListView):
             qs = qs.filter(Q(title__icontains=title_or_author)
                            | Q(author__name__icontains=title_or_author))
 
+        if condition_valid(view_count_min):
+            qs = qs.filter(views__gte=int(view_count_min))
+
+        if condition_valid(view_count_max):
+            qs = qs.filter(views__lte=int(view_count_max))
+
         return qs
