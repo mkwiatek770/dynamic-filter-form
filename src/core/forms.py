@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.postgres.fields import IntegerRangeField, DateRangeField
+from django.contrib.postgres.forms import IntegerRangeField, DateRangeField
 from .models import Category
 
 
@@ -11,4 +11,4 @@ class FilterForm(forms.Form):
     date_range = DateRangeField()
     categories = forms.ModelMultipleChoiceField(
         queryset=Category.objects.all())
-    reviewed = forms.ChoiceField(widget=forms.ChoiceWidget
+    reviewed = forms.ChoiceField()
